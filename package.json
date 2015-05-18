@@ -1,0 +1,13 @@
+{
+  "name": "mangr",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-scp": "*",
+    "grunt-contrib-compress": "*",
+    "grunt-contrib-clean": "*",
+    "bower": "*"
+  }
+}
