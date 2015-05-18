@@ -41,6 +41,18 @@ module.exports = function (grunt) {
                         flatten: true,
                         src: ['bower_components/jquery/dist/jquery.min.*'],
                         dest: '.build/work/lib/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['bower_components/components-font-awesome/css/font-awesome.min.css'],
+                        dest: '.build/work/lib/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['bower_components/components-font-awesome/fonts/*'],
+                        dest: '.build/work/fonts/'
                     }
                 ]
             },

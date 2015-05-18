@@ -14,6 +14,7 @@
     "angular-route": "*",
     "bootstrap": "*",
     "bootstrap-drawer": "*",
-    "jquery": "*"
+    "jquery": "*",
+    "components-font-awesome": "*"
   }
 }

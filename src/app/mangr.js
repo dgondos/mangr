@@ -8,7 +8,7 @@ config(['$routeProvider', function($routeProvider) {
             templateUrl: "components/pages/roll.tpl.html"
         }).
         when('/restaurants', {
-            template: "restauranten"
+            templateUrl: "components/pages/restaurants.tpl.html"
         }).
         when('/postmanger', {
             template: "postmanger"

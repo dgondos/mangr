@@ -17,35 +17,61 @@
     <script src="lib/drawer.min.js"></script>
     <link rel="stylesheet" href="lib/bootstrap-drawer.min.css"/>
 
+    <link rel="stylesheet" href="lib/font-awesome.min.css"/>
+
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>
 
     <script src="mangr.min.js"></script>
 
+    <style>
+        #drawer-page {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+        body, .drawer-contents {
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
+        }
+        .drawer-contents, .drawer-controls {
+            color: white;
+        }
+        .drawer-nav li a {
+            color: white;
+        }
+        .drawer-title-r {
+            #color: #FF00FF;
+            color: white;
+        }
+        .col-centered {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="has-drawer">
     <div id="mangrDrawer" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold">
         <div class="drawer-controls">
-            <!--<a href="#mangrDrawer" data-toggle="drawer"><span class="glyphicon glyphicon-menu-hamburger"></span></a>-->
-            <span class="glyphicon glyphicon-menu-hamburger" data-toggle="drawer" data-target="#mangrDrawer"></span>
+            <span class="fa fa-bars fa-2x" data-toggle="drawer" data-target="#mangrDrawer"></span>
         </div>
         <div class="drawer-contents">
             <div class="drawer-heading">
-                <h2 class="drawer-title">mangr</h2>
+                <h2 class="drawer-title"><span>mang</span><span class="drawer-title-r">r</span></h2>
             </div>
             <div class="drawer-body">
             </div>
             <ul class="drawer-nav">
-                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/roll">Roll</a></li>
-                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/restaurants">Restaurants</a></li>
-                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/postmanger">Post-manger</a></li>
+                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/roll"><i class="fa fa-cutlery">&nbsp; Eat</i></a></li>
+                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/restaurants"><i class="fa fa-glass">&nbsp; Restaurants</i></a></li>
+                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/postmanger"><i class="fa fa-heart">&nbsp; Review</i></a></li>
             </ul>
             <div class="drawer-footer">
-                <small>Built with node.js</small>
+                <small>Built with AngularJS and node.js</small>
             </div>
         </div>
     </div>
-    <div class="container" ng-view>
+    <div id="drawer-page" class="container-fluid" ng-view>
     </div>
 </body>
 </html>
