@@ -12,6 +12,7 @@
   "dependencies": {
     "angularjs": "*",
     "bootstrap": "*",
+    "bootstrap-drawer": "*",
     "jquery": "*"
   }
 }

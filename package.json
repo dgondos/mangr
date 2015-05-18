@@ -8,6 +8,8 @@
     "grunt-scp": "*",
     "grunt-contrib-compress": "*",
     "grunt-contrib-clean": "*",
+    "grunt-http-server": "*",
+    "grunt-contrib-watch": "*",
     "bower": "*"
   }
 }
