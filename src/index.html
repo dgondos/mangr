@@ -5,7 +5,7 @@
     <title>mangr</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <script src="lib/jquery.min.js"></script>
 
@@ -48,12 +48,15 @@
             margin-right: auto;
             text-align: center;
         }
+        .cursor-pointer {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="has-drawer">
     <div id="mangrDrawer" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold">
         <div class="drawer-controls">
-            <span class="fa fa-bars fa-2x" data-toggle="drawer" data-target="#mangrDrawer"></span>
+            <span class="cursor-pointer fa fa-bars fa-2x" data-toggle="drawer" data-target="#mangrDrawer"></span>
         </div>
         <div class="drawer-contents">
             <div class="drawer-heading">
