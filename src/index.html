@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mangr">
 <head lang="en">
     <meta charset="UTF-8">
     <title>mangr</title>
@@ -12,13 +12,22 @@
     <script src="lib/bootstrap.min.js"></script>
     <link rel="stylesheet" href="lib/bootstrap.min.css"/>
 
+    <script src="lib/transition.js"></script>
+
     <script src="lib/drawer.min.js"></script>
     <link rel="stylesheet" href="lib/bootstrap-drawer.min.css"/>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+
+    <script src="mangr.min.js"></script>
+
 </head>
 <body class="has-drawer">
     <div id="mangrDrawer" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold">
         <div class="drawer-controls">
-            <a href="#mangrDrawer" data-toggle="drawer"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            <!--<a href="#mangrDrawer" data-toggle="drawer"><span class="glyphicon glyphicon-menu-hamburger"></span></a>-->
+            <span class="glyphicon glyphicon-menu-hamburger" data-toggle="drawer" data-target="#mangrDrawer"></span>
         </div>
         <div class="drawer-contents">
             <div class="drawer-heading">
@@ -27,16 +36,16 @@
             <div class="drawer-body">
             </div>
             <ul class="drawer-nav">
-                <li role="presentation"><a href="#">Roll</a></li>
-                <li role="presentation"><a href="#">Restaurants</a></li>
-                <li role="presentation"><a href="#">Post-manger</a></li>
+                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/roll">Roll</a></li>
+                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/restaurants">Restaurants</a></li>
+                <li role="presentation" data-toggle="drawer" data-target="#mangrDrawer"><a href="#/postmanger">Post-manger</a></li>
             </ul>
             <div class="drawer-footer">
                 <small>Built with node.js</small>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" ng-view>
     </div>
 </body>
 </html>

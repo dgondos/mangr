@@ -6,79 +6,87 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         flatten: true,
-                        src: 'bower_components/angularjs/angular.min.js',
+                        src: ['bower_components/angularjs/angular.min.js*'],
                         dest: '.build/work/lib/'
                     },
                     {
                         expand: true,
                         flatten: true,
-                        src: 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                        src: ['bower_components/angular-route/angular-route.min.js*'],
                         dest: '.build/work/lib/'
                     },
                     {
                         expand: true,
                         flatten: true,
-                        src: 'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                        src: ['bower_components/bootstrap/dist/css/bootstrap.min.css',
+                              'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                              'bower_components/bootstrap/js/transition.js'],
                         dest: '.build/work/lib/'
                     },
                     {
                         expand: true,
                         flatten: true,
-                        src: 'bower_components/bootstrap-drawer/dist/css/bootstrap-drawer.min.css',
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: 'bower_components/bootstrap-drawer/dist/js/drawer.min.js',
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: 'bower_components/jquery/dist/jquery.min.js',
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: 'bower_components/jquery/dist/jquery.min.map',
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: 'bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf',
+                        src: ['bower_components/bootstrap/fonts/glyphicons-halflings-regular.*'],
                         dest: '.build/work/fonts/'
                     },
                     {
                         expand: true,
                         flatten: true,
-                        src: 'bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff',
-                        dest: '.build/work/fonts/'
+                        src: ['bower_components/bootstrap-drawer/dist/css/bootstrap-drawer.min.css',
+                              'bower_components/bootstrap-drawer/dist/js/drawer.min.js'],
+                        dest: '.build/work/lib/'
                     },
                     {
                         expand: true,
                         flatten: true,
-                        src: 'bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff2',
-                        dest: '.build/work/fonts/'
+                        src: ['bower_components/jquery/dist/jquery.min.*'],
+                        dest: '.build/work/lib/'
                     }
                 ]
             },
-            src: {
+            index: {
                 files: [
                     {
                         expand: true,
                         cwd: 'src',
-                        src: '**',
+                        src: 'index.html',
+                        dest: '.build/work/'
+                    }
+                ]
+            },
+            built: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.build/tmp',
+                        src: 'mangr.min.js',
                         dest: '.build/work/'
                     }
                 ]
             }
         },
+        html2js: {
+            main: {
+                src: ['src/**/*.tpl.html'],
+                dest: '.build/tmp/tpl.js'
+            }
+        },
+        concat: {
+            dist: {
+                src: ['.build/tmp/tpl.js', 'src/**/*.js'],
+                dest: '.build/tmp/mangr.js'
+            }
+        },
+        uglify: {
+            my_target: {
+                files: {
+                    '.build/tmp/mangr.min.js': ['.build/tmp/mangr.js']
+                }
+            }
+        },
         clean: {
-            work: {
-                src: ['.build/work']
+            build: {
+                src: ['.build']
             }
         },
         'http-server': {
@@ -108,9 +116,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-http-server');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('build', [
-        'clean:work',
+        'clean',
+        'html2js',
+        'concat',
+        'uglify',
         'copy'
     ]);
 

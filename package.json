@@ -6,10 +6,12 @@
     "grunt-cli": "*",
     "grunt-contrib-copy": "*",
     "grunt-scp": "*",
-    "grunt-contrib-compress": "*",
+    "grunt-contrib-concat": "*",
     "grunt-contrib-clean": "*",
     "grunt-http-server": "*",
     "grunt-contrib-watch": "*",
+    "grunt-html2js": "*",
+    "grunt-contrib-uglify": "*",
     "bower": "*"
   }
 }
