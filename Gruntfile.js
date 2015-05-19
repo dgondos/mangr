@@ -75,6 +75,24 @@ module.exports = function (grunt) {
                         dest: '.build/work/'
                     }
                 ]
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        flatten: false,
+                        cwd: 'server',
+                        src: ['**'],
+                        dest: '.build/dist/'
+                    },
+                    {
+                        expand: true,
+                        flatten: false,
+                        cwd: '.build/work',
+                        src: ['**'],
+                        dest: '.build/dist/site-static/'
+                    }
+                ]
             }
         },
         html2js: {
@@ -99,6 +117,15 @@ module.exports = function (grunt) {
         clean: {
             build: {
                 src: ['.build']
+            },
+            tmp: {
+                src: ['.build/tmp']
+            },
+            work: {
+                src: ['.build/work']
+            },
+            dist: {
+                src: ['.build/dist']
             }
         },
         'http-server': {
@@ -133,17 +160,26 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('build', [
-        'clean',
+        'clean:tmp',
+        'clean:work',
         'html2js',
         'concat',
         'uglify',
-        'copy'
+        'copy:libs',
+        'copy:index',
+        'copy:built'
     ]);
 
     grunt.registerTask('launch', [
         'build',
         'http-server:dev',
         'watch'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'build',
+        'clean:dist',
+        'copy:dist'
     ]);
 
     grunt.registerTask('default', [
