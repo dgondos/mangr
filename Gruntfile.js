@@ -114,6 +114,10 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
+            options : {
+                beautify : true,
+                mangle   : false
+            },
             my_target: {
                 files: {
                     '.build/tmp/mangr.min.js': ['.build/tmp/mangr.js']
