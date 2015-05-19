@@ -15,6 +15,7 @@
     "bootstrap": "*",
     "bootstrap-drawer": "*",
     "jquery": "*",
-    "components-font-awesome": "*"
+    "components-font-awesome": "*",
+    "angular-bootstrap": "*"
   }
 }

@@ -1,6 +1,7 @@
-angular.module('mangr', [
+var mangr = angular.module('mangr', [
     'ngRoute',
-    'templates-main'
+    'templates-main',
+    'ui.bootstrap'
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -11,7 +12,8 @@ config(['$routeProvider', function($routeProvider) {
             templateUrl: "components/pages/restaurants.tpl.html"
         }).
         when('/postmanger', {
-            template: "postmanger"
+            templateUrl: "components/pages/postmanger.tpl.html",
+            controller: 'postmangerController'
         }).
         otherwise({redirectTo: '/roll'});
 }]);

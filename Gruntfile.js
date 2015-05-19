@@ -53,6 +53,12 @@ module.exports = function (grunt) {
                         flatten: true,
                         src: ['bower_components/components-font-awesome/fonts/*'],
                         dest: '.build/work/fonts/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'],
+                        dest: '.build/work/lib/'
                     }
                 ]
             },

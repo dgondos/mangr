@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-xs-12 col-centered">
+        <rating class="rating-stars" ng-model="currentRating" max="5" state-on="'fa fa-star fa-4x'" state-off="'fa fa-star-o fa-4x'"></rating>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-xs-12">
+        <form>
+            <div class="form-group">
+                <label>Restaurant</label>
+                <input type="text" ng-model="selectedRestaurant" typeahead="restaurant for restaurant in restaurants | filter:$viewValue | limitTo:5" class="form-control elem-outline">
+            </div>
+            <button type="submit" class="btn elem-outline btn-default btn-lg">Review</button>
+        </form>
+    </div>
+</div>
