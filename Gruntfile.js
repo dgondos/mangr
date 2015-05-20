@@ -59,6 +59,12 @@ module.exports = function (grunt) {
                         flatten: true,
                         src: ['bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'],
                         dest: '.build/work/lib/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['bower_components/angular-ui-select/dist/select.min.*'],
+                        dest: '.build/work/lib/'
                     }
                 ]
             },

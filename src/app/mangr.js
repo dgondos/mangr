@@ -1,7 +1,8 @@
 var mangr = angular.module('mangr', [
     'ngRoute',
     'templates-main',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.select'
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -9,7 +10,8 @@ config(['$routeProvider', function($routeProvider) {
             templateUrl: "components/pages/roll.tpl.html"
         }).
         when('/restaurants', {
-            templateUrl: "components/pages/restaurants.tpl.html"
+            templateUrl: "components/pages/restaurants.tpl.html",
+            controller: 'restaurantController'
         }).
         when('/postmanger', {
             templateUrl: "components/pages/postmanger.tpl.html",

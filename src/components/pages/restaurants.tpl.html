@@ -1,5 +1,11 @@
 <div class="row">
     <div class="col-xs-12">
-        restaurant menu
+        <form>
+            <restaurant-selector selected-model="selectedRestaurant"></restaurant-selector>
+            <div class="btn-group btn-group-lg" role="group">
+                <button class="btn elem-outline btn-default btn-lg" ng-click="open()">+</button>
+                <button class="btn elem-outline btn-default btn-lg" ng-click="open()">View/Edit</button>
+            </div>
+        </form>
     </div>
 </div>

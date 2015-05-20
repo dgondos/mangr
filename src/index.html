@@ -24,6 +24,9 @@
 
     <script src="lib/ui-bootstrap-tpls.min.js"></script>
 
+    <link rel="stylesheet" href="lib/select.min.css"/>
+    <script src="lib/select.min.js"></script>
+
     <script src="mangr.min.js"></script>
 
     <style>
@@ -31,10 +34,10 @@
             padding-top: 50px;
             padding-bottom: 20px;
         }
-        body, .drawer-contents {
+        body, .drawer-contents, .modal-content {
             background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
         }
-        .drawer-contents, .drawer-controls {
+        .drawer-contents, .drawer-controls, .modal-content{
             color: white;
         }
         .drawer-nav li a {
@@ -47,7 +50,7 @@
         form .form-group label {
             color: white;
         }
-        .elem-outline {
+        .elem-outline, .form-control {
             background-color: transparent;
             color: white;
         }
