@@ -12,6 +12,7 @@
     "grunt-contrib-watch": "*",
     "grunt-html2js": "*",
     "grunt-contrib-uglify": "*",
+    "grunt-run": "*",
     "bower": "*"
   }
 }

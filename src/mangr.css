@@ -1,0 +1,39 @@
+#drawer-page {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+body, .drawer-contents, .modal-content {
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
+}
+.drawer-contents, .drawer-controls, .modal-content{
+    color: white;
+}
+.drawer-nav li a {
+    color: white;
+}
+.drawer-title-r {
+    #color: #FF00FF;
+    color: white;
+}
+form .form-group label {
+    color: white;
+}
+.elem-outline, .form-control {
+    background-color: transparent;
+    color: white;
+}
+.col-centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.rating-stars {
+    color: gold;
+}
+.github-link a {
+    color: black;
+}

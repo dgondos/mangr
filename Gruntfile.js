@@ -1,108 +1,37 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         copy: {
-            libs: {
+            site_static: {
                 files: [
                     {
                         expand: true,
                         flatten: true,
-                        src: ['bower_components/angularjs/angular.min.js*'],
-                        dest: '.build/work/lib/'
+                        src: ['bower_components/bootstrap/fonts/glyphicons-halflings-regular.*',
+                              'bower_components/components-font-awesome/fonts/*'],
+                        dest: 'dist/site-static/fonts/'
                     },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/angular-route/angular-route.min.js*'],
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/bootstrap/dist/css/bootstrap.min.css',
-                              'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                              'bower_components/bootstrap/js/transition.js'],
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/bootstrap/fonts/glyphicons-halflings-regular.*'],
-                        dest: '.build/work/fonts/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/bootstrap-drawer/dist/css/bootstrap-drawer.min.css',
-                              'bower_components/bootstrap-drawer/dist/js/drawer.min.js'],
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/jquery/dist/jquery.min.*'],
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/components-font-awesome/css/font-awesome.min.css'],
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/components-font-awesome/fonts/*'],
-                        dest: '.build/work/fonts/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'],
-                        dest: '.build/work/lib/'
-                    },
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: ['bower_components/angular-ui-select/dist/select.min.*'],
-                        dest: '.build/work/lib/'
-                    }
-                ]
-            },
-            index: {
-                files: [
                     {
                         expand: true,
                         cwd: 'src',
                         src: 'index.html',
-                        dest: '.build/work/'
-                    }
-                ]
-            },
-            built: {
-                files: [
+                        dest: 'dist/site-static/'
+                    },
                     {
                         expand: true,
-                        cwd: '.build/tmp',
+                        cwd: '.tmp',
                         src: 'mangr.min.js',
-                        dest: '.build/work/'
+                        dest: 'dist/site-static/'
                     }
                 ]
             },
-            dist: {
+            server: {
                 files: [
                     {
                         expand: true,
                         flatten: false,
                         cwd: 'server',
                         src: ['**'],
-                        dest: '.build/dist/'
-                    },
-                    {
-                        expand: true,
-                        flatten: false,
-                        cwd: '.build/work',
-                        src: ['**'],
-                        dest: '.build/dist/site-static/'
+                        dest: 'dist/'
                     }
                 ]
             }
@@ -110,13 +39,29 @@ module.exports = function (grunt) {
         html2js: {
             main: {
                 src: ['src/**/*.tpl.html'],
-                dest: '.build/tmp/tpl.js'
+                dest: '.tmp/tpl.js'
             }
         },
         concat: {
-            dist: {
-                src: ['.build/tmp/tpl.js', 'src/**/*.js'],
-                dest: '.build/tmp/mangr.js'
+            js: {
+                src: ['bower_components/jquery/dist/jquery.min.js',
+                      'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                      'bower_components/bootstrap-drawer/dist/js/drawer.min.js',
+                      'bower_components/angularjs/angular.min.js',
+                      'bower_components/angular-route/angular-route.min.js',
+                      'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                      'bower_components/angular-ui-select/dist/select.min.js',
+                      '.tmp/tpl.js',
+                      'src/**/*.js'],
+                dest: '.tmp/mangr.js'
+            },
+            css: {
+                src: ['bower_components/bootstrap/dist/css/bootstrap.min.css',
+                      'bower_components/bootstrap-drawer/dist/css/bootstrap-drawer.min.css',
+                      'bower_components/components-font-awesome/css/font-awesome.min.css',
+                      'bower_components/angular-ui-select/dist/select.min.css',
+                      'src/mangr.css'],
+                dest: 'dist/site-static/mangr.css'
             }
         },
         uglify: {
@@ -126,42 +71,52 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    '.build/tmp/mangr.min.js': ['.build/tmp/mangr.js']
+                    '.tmp/mangr.min.js': ['.tmp/mangr.js']
                 }
             }
         },
         clean: {
-            build: {
-                src: ['.build']
-            },
             tmp: {
-                src: ['.build/tmp']
+                src: ['.tmp']
             },
-            work: {
-                src: ['.build/work']
+            site_static: {
+                src: ['dist/site-static']
             },
             dist: {
-                src: ['.build/dist']
-            }
-        },
-        'http-server': {
-            'dev': {
-                root: ".build/work",
-                port: 8282,
-                host: "0.0.0.0",
-                showDir: true,
-                autoIndex: true,
-                ext: "html",
-                runInBackground: true
+                src: ['dist']
             }
         },
         watch: {
-            scripts: {
+            site_static: {
                 files: ['src/**'],
-                tasks: ['build'],
+                tasks: ['build_site_static'],
                 options: {
                     spawn: false
                 }
+            },
+            server: {
+                files: ['server/**'],
+                tasks: ['build_server'],
+                options: {
+                    spawn: false
+                }
+            }
+        },
+        run: {
+            options: {
+                cwd: 'dist'
+            },
+            updateDeps: {
+                cmd: 'npm',
+                args: [
+                    'update'
+                ]
+            },
+            server: {
+                cmd: 'npm',
+                args: [
+                    'start'
+                ]
             }
         }
     });
@@ -174,31 +129,32 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-run');
 
-    grunt.registerTask('build', [
-        'clean:tmp',
-        'clean:work',
+    grunt.registerTask('build_site_static', [
+        'clean:site_static',
         'html2js',
         'concat',
         'uglify',
-        'copy:libs',
-        'copy:index',
-        'copy:built'
+        'copy:site_static',
+        'clean:tmp'
+    ]);
+
+    grunt.registerTask('build_server', [
+        'copy:server'
+    ]);
+
+    grunt.registerTask('build', [
+        'build_site_static',
+        'build_server'
     ]);
 
     grunt.registerTask('launch', [
         'build',
-        'http-server:dev',
-        'watch'
-    ]);
-
-    grunt.registerTask('deploy', [
-        'build',
-        'clean:dist',
-        'copy:dist'
+        'run:server'
     ]);
 
     grunt.registerTask('default', [
-        'build'
+        'launch'
     ]);
-}
+};

@@ -5,19 +5,19 @@
     <form>
         <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control elem-outline">
+            <input type="text" class="form-control elem-outline" ng-model="input.name">
         </div>
         <div class="form-group">
             <label>Tags</label>
             <br/>
-            <ui-select multiple ng-model="tags" close-on-select="false" title="Add tags" tagging="newTag()">
+            <ui-select multiple ng-model="input.tags" close-on-select="false" title="Add tags" tagging="newTag()">
                 <ui-select-match>{{ $item }}</ui-select-match>
                 <ui-select-choices repeat="tag in dbTags | filter:$select.search">
                     {{tag}}
                 </ui-select-choices>
             </ui-select>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-show="!isAdd">
             <label>Current Rating</label>
             <br/>
             <rating class="rating-stars" ng-model="rating" readonly=true max="5" state-on="'fa fa-star fa-2x'" state-off="'fa fa-star-o fa-2x'"></rating>

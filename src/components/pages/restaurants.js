@@ -1,12 +1,17 @@
-mangr.controller('restaurantController', ['$scope', '$modal', function($scope, $modal) {
+mangr.controller('restaurantController', function($scope, $modal) {
     $scope.selectedRestaurant = undefined;
 
-    $scope.open = function () {
+    $scope.open = function(isAdd) {
         $modal.open({
             animation: true,
             templateUrl: 'components/modals/restaurants/restaurantDetails.tpl.html',
             controller: 'restaurantDetailsController',
-            size: "sm"
+            size: "sm",
+            resolve: {
+                isAdd: function() {
+                    return isAdd;
+                }
+            }
         });
     };
-}]);
+});

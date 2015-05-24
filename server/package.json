@@ -7,8 +7,9 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
-    "connect": "*",
-    "serve-static": "*"
+    "express": "*",
+    "body-parser": "*",
+    "compression": "*"
   },
   "private": true,
   "main": "server.js"
