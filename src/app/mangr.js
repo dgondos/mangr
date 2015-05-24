@@ -7,7 +7,8 @@ var mangr = angular.module('mangr', [
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/roll', {
-            templateUrl: "components/pages/roll.tpl.html"
+            templateUrl: "components/pages/roll.tpl.html",
+            controller: 'rollController'
         }).
         when('/restaurants', {
             templateUrl: "components/pages/restaurants.tpl.html",

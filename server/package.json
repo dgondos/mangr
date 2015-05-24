@@ -10,7 +10,8 @@
     "express": "*",
     "body-parser": "*",
     "compression": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "connect-domain": "*"
   },
   "private": true,
   "main": "server.js"

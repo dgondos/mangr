@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-xs-12 col-centered">
-        <rating class="rating-stars" ng-model="currentRating" max="5" state-on="'fa fa-star fa-4x'" state-off="'fa fa-star-o fa-4x'"></rating>
+        <rating class="rating-stars" ng-model="input.rating" max="5" state-on="'fa fa-star fa-4x'" state-off="'fa fa-star-o fa-4x'"></rating>
     </div>
 </div>
 <br/>
 <div class="row">
     <div class="col-xs-12">
         <form>
-            <restaurant-selector selected-model="selectedRestaurant"></restaurant-selector>
-            <button type="submit" class="btn elem-outline btn-default btn-lg">Review</button>
+            <restaurant-selector selected-model="input.restaurant"></restaurant-selector>
+            <button class="btn elem-outline btn-default btn-lg" ng-click="review()">Review</button>
         </form>
     </div>
 </div>

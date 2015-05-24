@@ -1,15 +1,25 @@
-mangr.controller('restaurantDetailsController', function($scope, $modalInstance, $http, isAdd) {
+mangr.controller('restaurantDetailsController', function($scope, $modalInstance, $http, isAdd, editRestaurant) {
     $scope.rating = 3;
     $scope.dbTags = [ 'korean', 'japanese', 'quick' ];
     $scope.tags = undefined;
     $scope.isAdd = isAdd;
+    $scope.editRestaurant = editRestaurant;
     $scope.input = {};
-    $scope.input.name = "Arisun";
-    $scope.input.tags = ['korean', 'quick'];
+
+    if (!$scope.isAdd) {
+        $http.post('/api/restaurant', JSON.stringify({ name: $scope.editRestaurant })).
+            success(function(data, status, headers, config) {
+                $scope.input.name = data.restaurant.name;
+                $scope.input.tags = data.restaurant.tags;
+                $scope.rating = data.restaurant.rating;
+            }).
+            error(function(data, status, headers, config) {
+
+            });
+    }
 
     $scope.ok = function () {
-        var api = $scope.isAdd ? 'add' : 'update';
-        $http.post('/api/' + api, JSON.stringify($scope.input)).
+        $http.post('/api/upsert', JSON.stringify($scope.input)).
             success(function(data, status, headers, config) {
                 $modalInstance.close();
             }).

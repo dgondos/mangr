@@ -10,6 +10,9 @@ mangr.controller('restaurantController', function($scope, $modal) {
             resolve: {
                 isAdd: function() {
                     return isAdd;
+                },
+                editRestaurant: function() {
+                    if (!isAdd) return $scope.selectedRestaurant;
                 }
             }
         });
