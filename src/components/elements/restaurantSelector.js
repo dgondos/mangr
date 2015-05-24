@@ -5,8 +5,15 @@ mangr.directive('restaurantSelector', [function() {
             selectedModel: '='
         },
         templateUrl: 'components/elements/restaurantSelector.tpl.html',
-        controller: function($scope) {
-            $scope.restaurants = [ 'Arisun', 'Chur', 'Encasa', 'Pepper Lunch', 'Crappy Mall Thai' ];
+        controller: function($scope, $http) {
+            $scope.restaurants = [];
+            $http.get('/api/restaurants').
+                success(function(data, status, headers, config) {
+                    $scope.restaurants = data.restaurants;
+                }).
+                error(function(data, status, headers, config) {
+
+                });
         }
     };
 }]);

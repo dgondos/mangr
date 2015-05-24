@@ -9,7 +9,8 @@
   "dependencies": {
     "express": "*",
     "body-parser": "*",
-    "compression": "*"
+    "compression": "*",
+    "mongodb": "*"
   },
   "private": true,
   "main": "server.js"
