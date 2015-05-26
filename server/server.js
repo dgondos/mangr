@@ -107,6 +107,17 @@ var getLastReviewed5 = function(callback) {
            var visitedRestaurants = [];
            var last5ReviewedRestaurants = [];
 
+           // first add the yet-to-be-visited restaurants
+           restaurants.forEach(function(restaurant) {
+               var restaurantReviewed = sortedReviews.filter(function(review) {
+                   return review.restaurant == restaurant.name;
+               }).length !== 0;
+               if (visitedRestaurants.length >= 5 ||
+                   visitedRestaurants.indexOf(restaurant.name) >= 0 ||
+                   restaurantReviewed) return;
+               last5ReviewedRestaurants.push({ name: restaurant.name, tags: restaurant.tags });
+           });
+
            sortedReviews.forEach(function(sortedReview) {
                if (visitedRestaurants.length >= 5 ||
                    visitedRestaurants.indexOf(sortedReview.restaurant) >= 0) return;
@@ -117,7 +128,7 @@ var getLastReviewed5 = function(callback) {
                    return restaurantIt.name == sortedReview.restaurant;
                })[0];
 
-               last5ReviewedRestaurants.push({ name: sortedReview.restaurant, tags: restaurant.tags, timestamp: sortedReview.timestamp });
+               last5ReviewedRestaurants.push({ name: sortedReview.restaurant, tags: restaurant.tags });
            });
 
            callback(last5ReviewedRestaurants);
