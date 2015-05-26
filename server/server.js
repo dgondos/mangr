@@ -99,6 +99,26 @@ var getRating = function(restaurant, callback) {
     });
 };
 
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/2450976#2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex ;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 var getLastReviewed5 = function(callback) {
     getRestaurants(function(restaurants) {
        getReviews(function(reviews) {
@@ -115,8 +135,12 @@ var getLastReviewed5 = function(callback) {
                if (visitedRestaurants.length >= 5 ||
                    visitedRestaurants.indexOf(restaurant.name) >= 0 ||
                    restaurantReviewed) return;
+               visitedRestaurants.push(restaurant.name);
                last5ReviewedRestaurants.push({ name: restaurant.name, tags: restaurant.tags });
            });
+
+           // if we have any unreviewed restaurants, randomize them
+           shuffle(last5ReviewedRestaurants);
 
            sortedReviews.forEach(function(sortedReview) {
                if (visitedRestaurants.length >= 5 ||
